@@ -31,6 +31,10 @@ func WrapError(err error) BaseError {
 	}
 }
 
+func (be BaseError) Unwrap() error {
+	return be.error
+}
+
 func (be BaseError) Wrap(text string) BaseError {
 	return BaseError{
 		error: fmt.Errorf("%w: %v", be, text),
